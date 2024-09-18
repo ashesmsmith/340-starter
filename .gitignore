@@ -14,3 +14,9 @@ node_modules
 
 # .DS_Store is only for Mac users
 **/.DS_Store
+
+# brief overview of how to make use of starter files and folders
+README.md
+
+# add per video instrustions
+pnpm.lock.yaml
