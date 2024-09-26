@@ -9,8 +9,6 @@
 
 /* HEADER */
 header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   padding: 1rem;
 }
 
@@ -40,8 +38,7 @@ nav {
 
 nav ul {
   list-style: none;
-  display: flex;
-  flex-wrap: nowrap;
+  text-align: center;
   justify-content: space-evenly;
 }
 
@@ -58,7 +55,6 @@ main {
 
 h1 {
   margin-bottom: 1rem;
-  text-wrap: nowrap;
 }
 
 button {
@@ -146,6 +142,17 @@ footer {
     margin: 2rem 3rem;
     border: 4px solid darkblue;
     border-radius: 10px;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+  }
+
+  nav ul {
+    display: flex;
+    flex-wrap: nowrap;
   }
 
   main {
