@@ -35,10 +35,14 @@ header a {
 nav {
   background-color: darkblue;
   color: white;
+  padding: .5rem;
+}
+
+nav ul {
+  list-style: none;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-evenly;
-  padding: .5rem;
 }
 
 nav a {
