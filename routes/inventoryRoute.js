@@ -9,7 +9,7 @@ const invController = require("../controllers/invController")
 router.get("/type/:classificationId", invController.buildByClassificationId);
 
 // Route to build inventory by inv_id - single view
-// Assignment 3 - #2 > #1
+// Assignment 3 Task 1- #2 > #1
 // URL path found in utilities/index > buildClassificationGrid
 router.get("/detail/:inv_id", invController.buildBySingleView);
 

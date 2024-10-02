@@ -29,7 +29,7 @@ async function getInventoryByClassificationId(classification_id) {
 
 /* ***************************
  *  Get single inventory item by inv_id
- *  Assignment 3 - #2 > #3
+ *  Assignment 3 Task 1 - #2 > #3
  * ************************** */
 async function getInventoryByInvId(inv_id) {
   try {

@@ -61,7 +61,7 @@ Util.buildClassificationGrid = async function(data) {
 
 /* **************************************
 * Build the single view HTML
-* Assignment 3 - #2 > #4
+* Assignment 3 Task 1 - #2 > #4
 * ************************************ */
 Util.buildSingleView = async function(vehicle) {
     let singleView = `<img src='${vehicle.inv_img}' alt='${vehicle.inv_make} ${vehicle.inv_model}>

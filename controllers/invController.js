@@ -22,7 +22,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
 
 /* ***************************
  *  Build inventory by single view
- *  Assignment 3 - #2 > #2
+ *  Assignment 3 Task 1 - #2 > #2
  * ************************** */
 invCont.buildBySingleView = async function (req, res, next) {
     const inv_id = req.params.inv_id
