@@ -9,6 +9,7 @@ async function getClassifications(){
 
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
+ *  Week 3 - Learning Activity 1 Step 3
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
   try {
@@ -22,8 +23,26 @@ async function getInventoryByClassificationId(classification_id) {
     return data.rows
   }
   catch (error) {
-    console.error("getclassificationsbyid error" + error)
+    console.error("getInventoryByClassificationsId error" + error)
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId}
+/* ***************************
+ *  Get single inventory item by inv_id
+ *  Assignment 3 - #2 > #3
+ * ************************** */
+async function getInventoryByInvId(inv_id) {
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory AS i
+      WHERE i.inv_id = $1`
+      [inv_id]
+    )
+    return data
+  }
+  catch (error) {
+    console.error("getInventoryByInvId error" + error)
+  }
+}
+
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInvId}

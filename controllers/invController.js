@@ -5,6 +5,7 @@ const invCont = {}
 
 /* ***************************
  *  Build inventory by classification view
+ *  Week 3 - Learning Activity 1 Step 3
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
     const classification_id = req.params.classificationId
@@ -16,6 +17,23 @@ invCont.buildByClassificationId = async function (req, res, next) {
         title: className + " vehicles",
         nav,
         grid,
+    })
+}
+
+/* ***************************
+ *  Build inventory by single view
+ *  Assignment 3 - #2 > #2
+ * ************************** */
+invCont.buildBySingleView = async function (req, res, next) {
+    const inv_id = req.params.inv_id
+    const data = await invModel.getInventoryByInvId(inv_id)
+    const single = await utilities.buildSingleView(data)
+    let nav = await utilities.getNav()
+    const vehicleName = `${data[0].inv_year} ${data[0].inv_make} ${data[0].inv_model}`
+    res.render("./inventory/inv_id", {
+        title: vehicleName,
+        nav,
+        single,
     })
 }
 

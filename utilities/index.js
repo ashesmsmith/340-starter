@@ -26,8 +26,9 @@ Util.getNav = async function (req, res, next) {
 
 /* **************************************
 * Build the classification view HTML
+* Week 3 - Learning Activity 1 Step 3
 * ************************************ */
-Util.buildClassificationGrid = async function(data){
+Util.buildClassificationGrid = async function(data) {
     let grid
     if(data.length > 0){
         grid = '<ul id="inv-display">'
@@ -56,6 +57,19 @@ Util.buildClassificationGrid = async function(data){
         grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
     }
     return grid
+}
+
+/* **************************************
+* Build the single view HTML
+* Assignment 3 - #2 > #4
+* ************************************ */
+Util.buildSingleView = async function(vehicle) {
+    let singleView = `<img src='${vehicle.inv_img}' alt='${vehicle.inv_make} ${vehicle.inv_model}>
+    <h2>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</h2>
+    <h3>${vehicle.inv_miles}</h3>
+    <p>${vehicle.inv_description}</p>`
+
+    return singleView
 }
 
 /* ****************************************
