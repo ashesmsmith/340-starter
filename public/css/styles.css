@@ -132,7 +132,9 @@ footer {
   padding: 1rem;
 }
 
-/* BY CLASSIFICATION - INVENTORY PAGES */
+/*
+BY CLASSIFICATION - INVENTORY PAGES 
+*/
 #inv-display {
   list-style: none;
   margin: 1rem auto;
@@ -156,7 +158,32 @@ footer {
   text-wrap: wrap;
 }
 
-/* MEDIA QUERIES */
+/*
+BY INVENTORY ID - SINGLE VIEW PAGES 
+*/
+.inv-id-view {
+  text-align: center;
+  margin: 1.5rem auto;
+}
+
+.inv-id-image {
+  display: block;
+  margin: 1rem auto;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid darkblue;
+  border-radius: 10px;
+}
+
+.inv-id-view h2, .inv-id-view p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 1rem auto;
+}
+
+
+/* *******************
+*** MEDIA QUERIES **** 
+******************* */
 @media screen and (min-width: 750px) {
   html {
     background-color: black;
@@ -203,7 +230,9 @@ footer {
     grid-row: 3/4;
   }
 
-  /* BY CLASSIFICATION - INVENTORY PAGES */
+/* 
+BY CLASSIFICATION- INVENTORY PAGES 
+*/
   #inv-display {
     grid-column: 1/3;
     display: grid;
@@ -216,4 +245,30 @@ footer {
     height: auto;
     align-content: center;
   }
+}
+
+/*
+BY INVENTORY ID - SINGLE VIEW PAGES 
+*/
+main :has(h1 .inv-id-view) {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+
+h1.inv-id-view {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  margin: 0 auto;
+}
+
+.inv-id-view h2, .inv-id-view h3, .inv-id-view p {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+.inv-id-image {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  align-self: center;
 }
