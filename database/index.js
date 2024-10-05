@@ -37,6 +37,9 @@ if (process.env.NODE_ENV == "development") {
 else {
     pool = new Pool({
         connectionString: process.env.DATABASE_URL,
-    })
-    module.exports = pool
+        ssl: {
+            rejectUnauthorized: false;
+        }
+    });
+    module.exports = pool;
 }
