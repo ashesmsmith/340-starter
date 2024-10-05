@@ -1,6 +1,7 @@
 /* Week 3-Model - View - Control Implementation for explanations*/
 const { Pool } = require("pg")
 require("dotenv").config()
+
 /* ***************
  * Connection Pool
  * SSL Object needed for local testing of app
@@ -37,7 +38,8 @@ if (process.env.NODE_ENV == "development") {
 else {
     pool = new Pool({
         connectionString: process.env.DATABASE_URL,
-        ssl: {
+        // added per classmate recommendation to fix render error
+        ssl: { 
             rejectUnauthorized: false,
         },
     });
