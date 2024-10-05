@@ -18,5 +18,6 @@ node_modules
 # brief overview of how to make use of starter files and folders
 README.md
 
-# add per video instrustions
-pnpm.lock.yaml
+# # removed from list since it wasn't in written instructions to add it
+# # add per video instrustions
+# pnpm.lock.yaml
