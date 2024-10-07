@@ -16,11 +16,13 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const errorRoute = require("./routes/errorRoute")
 const utilities = require("./utilities/")
 const session = require("express-session")
-const pool = require('./database/')
+const pool = require("./database/")
+const accountRoute = require("./routes/accountRoute")
 
 /* ***********************
  * Middleware
 * ************************/
+// Week 4 - Learning Activity 1 - Step 1
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
@@ -49,18 +51,22 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
 *************************/
-app.use(utilities.handleErrors(static))
+app.use(static)
 
 // Index Route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory Routes
-// Week 3 - Learning Activity 1 Step 3
-app.use("/inv", utilities.handleErrors(inventoryRoute))
+// Week 3 - Learning Activity 1 - Step 3
+app.use("/inv", inventoryRoute)
 
 // Error Route
-// Week 3 - Assignment 3 Task 3
+// Week 3 - Assignment 3 - Task 3
 app.use("/error", errorRoute)
+
+// Account Route
+// Week 4 - Learning Activity 1 - Step 2
+app.use("/account", accountRoute)
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

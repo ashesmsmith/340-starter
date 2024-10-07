@@ -5,7 +5,7 @@ const invCont = {}
 
 /* ***************************
  *  Build inventory by classification view
- *  Week 3 - Learning Activity 1 Step 3
+ *  Week 3 - Learning Activity 1 - Step 3
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
     const classification_id = req.params.classificationId
