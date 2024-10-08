@@ -10,6 +10,16 @@
 <!-- Message Block -->
 <%- messages() %>
 
+<!-- Errors Display -->
+<!-- Week 4 - Learning Activity 2 - Step 3 -->
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
 <!-- Account Registration Display -->
 <form id="register-form" action="/account/register" method="post">
     <p>*All fields are required.</p>

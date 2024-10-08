@@ -1,6 +1,6 @@
 // Week 4 - Learning Activity 1 - Step 2, 3 & 4
 const utilities = require("../utilities")
-const accounttModel = require("../models/account-model")
+const accountModel = require("../models/account-model")
 
 /* ****************************************
 *  Deliver login view
@@ -22,6 +22,7 @@ async function buildRegister(req, res, next) {
     res.render("account/register", {
         title: "Register",
         nav,
+        errors: null,
     })
 }
 
@@ -33,7 +34,7 @@ async function registerAccount(req, res) {
     let nav = await utilities.getNav()
     const { account_firstname, account_lastname, account_email, account_password } = req.body
 
-    const regResult = await accounttModel.registerAccount(
+    const regResult = await accountModel.registerAccount(
         account_firstname,
         account_lastname,
         account_email,
