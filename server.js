@@ -10,18 +10,20 @@ const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
+const utilities = require("./utilities/")
 const static = require("./routes/static")
-const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const errorRoute = require("./routes/errorRoute")
-const utilities = require("./utilities/")
+const accountRoute = require("./routes/accountRoute")
+const baseController = require("./controllers/baseController")
 const session = require("express-session")
 const pool = require("./database/")
-const accountRoute = require("./routes/accountRoute")
+const bodyParser = require("body-parser")
 
 /* ***********************
  * Middleware
 * ************************/
+// Express Session
 // Week 4 - Learning Activity 1 - Step 1
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
@@ -35,11 +37,17 @@ app.use(session({
 }))
 
 // Express Messages Middleware
+// Week 4 - Learning Activity 1 - Step 1
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+// Body-Parser
+// Week 4 - Learning Activity 1 - Step 4
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 /* ***********************
  * View Engine and Templates

@@ -11,4 +11,9 @@ router.get("/login", utilities.handleErrors(acctController.buildLogin));
 // Week 4 - Learning Activity 1 - Step 3
 router.get("/register", utilities.handleErrors(acctController.buildRegister));
 
+
+// Registration POST
+// Week 4 - Learning Activity 1 - Step 4
+router.post("/register", utilities.handleErrors(acctController.registerAccount));
+
 module.exports = router;

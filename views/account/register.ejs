@@ -1,4 +1,4 @@
-<!-- Week 4 - Learning Activity 1 - Step 3 -->
+<!-- Week 4 - Learning Activity 1 - Step 3 & 4 -->
 
 <!-- Content Heading -->
 <% if (title) { %>
@@ -11,19 +11,19 @@
 <%- messages() %>
 
 <!-- Account Registration Display -->
-<form id="register-form">
-    <label for="account-firstname">First Name:</label>
-    <input type="text" id="reg-fname" name="account-firstname" required>
+<form id="register-form" action="/account/register" method="post">
+    <label for="account_firstname">First Name:</label>
+    <input type="text" id="reg-fname" name="account_firstname" required>
 
-    <label for="account-lastname">Last Name:</label>
-    <input type="text" id="reg-lname" name="account-lastname" required>
+    <label for="account_lastname">Last Name:</label>
+    <input type="text" id="reg-lname" name="account_lastname" required>
 
-    <label for="account-email">Email Address:</label>
-    <input type="text" id="reg-email" name="account-email"required>
+    <label for="account_email">Email Address:</label>
+    <input type="text" id="reg-email" name="account_email"required>
 
-    <label for="account-password">Password:</label>
+    <label for="account_password">Password:</label>
     <p>Must be min 12 characters and contain 1 capital letter, 1 number, 1 special character</p>
-    <input type="text" id="reg-password" name="account-password" required>
+    <input type="text" id="reg-password" name="account_password" required>
 
     <input type="submit" id="reg-btn" value="Register">
 
