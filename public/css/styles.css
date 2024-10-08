@@ -216,6 +216,16 @@ form input {
   color: lightblue;
 }
 
+input:required:invalid, input:focus:invalid {
+  border-left: 5px solid red;
+}
+
+input:required:valid {
+  border-left: 5px solid lightgreen;
+}
+
+
+
 /* *******************
 *** MEDIA QUERIES **** 
 ******************* */

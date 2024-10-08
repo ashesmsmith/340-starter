@@ -1,4 +1,4 @@
-<!-- Week 4 - Learning Activity 1 - Step 2 -->
+<!-- Week 4 - Learning Activity 1 - Step 2 & 4 -->
 
 <!-- Content Heading -->
 <% if (title) { %>
@@ -13,10 +13,11 @@
 <!-- Account Login Display -->
 <form id="login-form">
     <label for="account_email">Email Address:</label>
-    <input type="email" id="login-email" name="account_email">
+    <input type="email" id="login-email" name="account_email" required>
 
     <label for="account_password">Password:</label>
-    <input type="text" id="login-password" name="account_password">
+    <p>Password must be minimum of 12 characters and contain 1 capital letter, 1 number, and 1 special character</p>
+    <input type="password" id="login-password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
     <input type="submit" id="login-btn" value="Login">
 
