@@ -134,7 +134,7 @@ footer {
 
 
 /*
-BY CLASSIFICATION - INVENTORY PAGES 
+INVENTORY BY CLASSIFICATION VIEW
 */
 #inv-display {
   list-style: none;
@@ -160,7 +160,7 @@ BY CLASSIFICATION - INVENTORY PAGES
 }
 
 /*
-BY INVENTORY ID - SINGLE VIEW PAGES 
+INVENTORY BY SINGLE VIEW (INVENTORY ID)
 */
 .inv-id-view {
   text-align: center;
@@ -181,24 +181,44 @@ BY INVENTORY ID - SINGLE VIEW PAGES
   margin: 1rem auto;
 }
 
+/*
+MANAGEMENT VIEW
+*/
+#management-list {
+  text-align: center;
+  margin: 1rem auto;
+  padding: 2rem;
+  border: 2px solid darkblue;
+  border-radius: 10px;
+}
+
+#management-list a {
+  display: block;
+  margin: 1rem auto;
+}
+
 /* 
-Account Login & Registration Forms
+FORMS - Account Login, Registration and Management 
 */
 form {
   grid-column: 1/3;
-  background-color: slategrey;
-  color: white;
+  background-color: lightgrey;
   text-align: center;
   max-width: 90%;
   height: auto;
   margin: 2rem auto;
   padding: 1rem;
-  border: 5px solid darkblue;
+  border: 2px solid darkblue;
   border-radius: 10px;
 }
 
 form p {
-  font-size: .7rem;
+  font-size: .8rem;
+  margin: .5rem auto;
+}
+
+form label {
+  font-size: 1.2rem;
 }
 
 form input {
@@ -207,9 +227,12 @@ form input {
   border-radius: 5px;
 }
 
-#login-btn, #reg-btn {
-  font-size: 1.2rem;
+#login-btn, #reg-btn, #new-class-btn {
+  background-color: darkblue;
+  color: white;
+  font-size: 1.1rem;
   padding: .5rem;
+  border: none;
 }
 
 #login-form a {
@@ -276,7 +299,7 @@ input:required:valid {
   }
 
 /* 
-BY CLASSIFICATION- INVENTORY PAGES 
+INVENTORY BY CLASSIFICATION VIEW
 */
   #inv-display {
     grid-column: 1/3;
@@ -293,7 +316,7 @@ BY CLASSIFICATION- INVENTORY PAGES
 }
 
 /*
-BY INVENTORY ID - SINGLE VIEW PAGES 
+INVENTORY BY SINGLE VIEW (INVENTORY ID)
 */
 main :has(h1 .inv-id-view) {
   display: grid;
@@ -316,4 +339,11 @@ h1.inv-id-view {
   grid-column: 1/2;
   grid-row: 1/3;
   align-self: center;
+}
+
+/*
+MANAGEMENT VIEW
+*/
+#management-list {
+  grid-column: 1/3;
 }
