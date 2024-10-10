@@ -92,7 +92,7 @@ validate.loginRules = () => {
             .isEmail()
             .normalizeEmail() // refer to validator.js docs
             .withMessage("Please provide a valid email address.")
-            .custom(async (account_email) => { // Week 4 - Team Activity - Step 1
+            .custom(async (account_email) => {
                 const emailExists = await accountModel.checkExistingEmail(account_email)
                 if (!emailExists){
                     throw new Error("No account found. Please register or use different email")
