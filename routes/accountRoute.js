@@ -1,7 +1,7 @@
 // Week 4 - Learning Activity 1 - Step 2
 const express = require("express")
-const router =  new express.Router
-const utilities = require("../utilities")
+const router =  new express.Router()
+const utilities = require("../utilities/index")
 const acctController = require("../controllers/acctController")
 const regValidate = require("../utilities/account-validation")
 
@@ -17,8 +17,17 @@ router.get("/register", utilities.handleErrors(acctController.buildRegister));
 // Week 4 - Learning Activity 1 - Step 4
 // Week 4 - Learning Activity 2 - Step 3
 router.post("/register", 
-    regValidate.registationRules(),
+    regValidate.registrationRules(),
     regValidate.checkRegData,
     utilities.handleErrors(acctController.registerAccount));
+
+// Process the login attempt - Temporary Use Only
+// Week 4 - Team Activity - Step 4
+router.post("/login",
+    regValidate.loginRules(),
+    regValidate.checkLoginData,
+    (req, res) => {
+        res.status(200).send('login process')
+    });
 
 module.exports = router;

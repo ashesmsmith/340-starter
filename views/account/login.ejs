@@ -10,14 +10,24 @@
 <!-- Message Block -->
 <%- messages() %>
 
+<!-- Errors Display -->
+<!-- Week 4 - Team Activity - Step 4 -->
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
 <!-- Account Login Display -->
-<form id="login-form">
+<form id="login-form" action="/account/login" method="post">
     <label for="account_email">Email Address:</label>
-    <input type="email" id="login-email" name="account_email" required>
+    <input type="email" name="account_email" id="account_email" required placeholder="email@address.com" value="<%= locals.account_email %>">
 
     <label for="account_password">Password:</label>
     <p>Password must be minimum of 12 characters and contain 1 capital letter, 1 number, and 1 special character</p>
-    <input type="password" id="login-password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+    <input type="password" name="account_password" id="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
     <input type="submit" id="login-btn" value="Login">
 
