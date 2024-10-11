@@ -1,12 +1,11 @@
 // Week 4 - Learning Activity 2 - Step 3
-
 const utilities = require(".")
 const { body, validationResult } = require("express-validator")
 const validate = {}
 const accountModel = require("../models/account-model")
 
-/*  **********************************
-* Registration Data Validation Rules
+/* **********************************
+*  Registration Data Validation Rules
 * ********************************* */
 validate.registrationRules = () => {
     return [
@@ -36,7 +35,7 @@ validate.registrationRules = () => {
             .withMessage("A valid email is required.")
             .custom(async (account_email) => { // Week 4 - Team Activity - Step 1
                 const emailExists = await accountModel.checkExistingEmail(account_email)
-                if (emailExists){
+                if (emailExists) {
                     throw new Error("Email exists. Please log in or use different email")
                 }
             }),
@@ -57,7 +56,7 @@ validate.registrationRules = () => {
 }
 
 /* ******************************
-* Check data and return errors or continue to registration
+*  Check data and return errors or continue to Registration
 * ***************************** */
 validate.checkRegData = async (req, res, next) => {
     const { account_firstname, account_lastname, account_email } = req.body
@@ -79,8 +78,8 @@ validate.checkRegData = async (req, res, next) => {
 }
 
 /* ******************************
-* Login Data Validation Rules
-* Week 4 - Team Activity - Step 4
+*  Login Data Validation Rules
+*  Week 4 - Team Activity - Step 4
 * ***************************** */
 validate.loginRules = () => {
     return [
@@ -115,8 +114,8 @@ validate.loginRules = () => {
 }
 
 /* ******************************
-* Check data and return errors or continue to login
-* Week 4 - Team Activity - Step 4
+*  Check data and return errors or continue to login
+*  Week 4 - Team Activity - Step 4
 * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
     const { account_email } = req.body

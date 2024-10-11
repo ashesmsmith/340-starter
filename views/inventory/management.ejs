@@ -1,0 +1,18 @@
+<!-- Assignment 4 - Task 1 -->
+
+<!-- Content Heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+
+<!-- Message Block -->
+<%- messages() %>
+
+<!-- Management Display -->
+<div id="management-list">
+    <h2>Management Options</h2>
+    <a href="/inv/add-classification">Add New Classification</a>
+    <a href="/inv/add-inventroy">Add New Vehicle</a>
+</div>

@@ -4,9 +4,9 @@ const accountModel = require("../models/account-model")
 const bcrypt = require("bcryptjs")
 
 /* ****************************************
-*  Deliver login view
+*  login View
 * *************************************** */
-async function buildLogin(req, res, next) {
+async function buildLogin (req, res, next) {
     let nav = await utilities.getNav()
     res.render("account/login", {
         title: "Login",
@@ -16,10 +16,10 @@ async function buildLogin(req, res, next) {
 }
 
 /* ****************************************
-*  Deliver Register view
-* Week 4 - Learning Activity 1 - Step 3
+*  Registration View
+*  Week 4 - Learning Activity 1 - Step 3
 * *************************************** */
-async function buildRegister(req, res, next) {
+async function buildRegister (req, res, next) {
     let nav = await utilities.getNav()
     res.render("account/register", {
         title: "Register",
@@ -30,9 +30,9 @@ async function buildRegister(req, res, next) {
 
 /* ****************************************
 *  Process Registration
-* Week 4 - Learning Activity 1 - Step 4
+*  Week 4 - Learning Activity 1 - Step 4
 * *************************************** */
-async function registerAccount(req, res) {
+async function registerAccount (req, res) {
     let nav = await utilities.getNav()
     const { account_firstname, account_lastname, account_email, account_password } = req.body
 

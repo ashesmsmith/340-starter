@@ -2,8 +2,8 @@ const invModel = require("../models/inventory-model")
 const Util = {}
 
 /* ************************
- * Constructs the nav HTML unordered list
- ************************** */
+*  Constructs the nav HTML unordered list
+************************** */
 Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications()
     let list = "<ul>"
@@ -25,8 +25,8 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* **************************************
-* Build the classification view HTML
-* Week 3 - Learning Activity 1 Step 3
+*  Build the classification view HTML
+*  Week 3 - Learning Activity 1 - Step 3
 * ************************************ */
 Util.buildClassificationGrid = async function(data) {
     let grid
@@ -59,8 +59,8 @@ Util.buildClassificationGrid = async function(data) {
 }
 
 /* **************************************
-* Build the single view HTML
-* Assignment 3 Task 1 - #2 > #4
+*  Build the single view HTML
+*  Assignment 3 - Task 1 - #2 > #4
 * ************************************ */
 Util.buildSingleView = async function(vehicle) {
     let singleView = `<img class='inv-id-image' src='${vehicle.inv_image}' alt='${vehicle.inv_make} ${vehicle.inv_model}'>
@@ -74,10 +74,10 @@ Util.buildSingleView = async function(vehicle) {
 }
 
 /* ****************************************
- * Middleware For Handling Errors
- * Wrap other function in this for 
- * General Error Handling
- **************************************** */
+*  Middleware For Handling Errors
+*  Wrap other function in this for 
+*  General Error Handling
+**************************************** */
 Util.handleErrors = fn => (req, res, next) => 
     Promise.resolve(fn(req, res, next)).catch(next)
 

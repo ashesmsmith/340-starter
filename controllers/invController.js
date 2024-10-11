@@ -1,12 +1,11 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
-
 const invCont = {}
 
 /* ***************************
- *  Build inventory by classification view
- *  Week 3 - Learning Activity 1 - Step 3
- * ************************** */
+*  Classification View - Build by Classification Id
+*  Week 3 - Learning Activity 1 - Step 3
+* ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
     const classification_id = req.params.classificationId
     const data = await invModel.getInventoryByClassificationId(classification_id)
@@ -21,13 +20,12 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build inventory by single view
- *  Assignment 3 Task 1 - #2 > #2
- * ************************** */
+*  Single View - Build by Inventory Id
+*  Assignment 3 - Task 1
+* ************************** */
 invCont.buildByInvId = async function (req, res, next) {
     const inv_id = req.params.inv_id
     const data = await invModel.getInventoryByInvId(inv_id)
-    console.log(data)
     const singleView = await utilities.buildSingleView(data)
     let nav = await utilities.getNav()
     const vehicleName = `${data.inv_year} ${data.inv_make} ${data.inv_model}`
@@ -35,6 +33,65 @@ invCont.buildByInvId = async function (req, res, next) {
         title: vehicleName,
         nav,
         singleView,
+    })
+}
+
+/* ***************************
+*  Management View
+*  Assignment 4 - Task 1
+* ************************** */
+invCont.buildManagementView = async function (req, res, next) {
+    try {
+        let nav = await utilities.getNav()
+        res.render("./inventory/management", {
+            title: "Inventory Management",
+            nav,
+            errors: null,
+        })
+    }
+    catch (error) {
+        console.error("buildManagementView error" + error)
+    }
+}
+
+/* ***************************
+*  Add New Classification View
+*  Assignment 4 - Task 2
+* ************************** */
+invCont.buildAddClassificationView = async function (req, res, next) {
+    try {
+        let nav = await utilities.getNav()
+        res.render("./inventory/add-classification", {
+            title: "Add New Classification",
+            nav,
+            errors: null,
+        })
+    }
+    catch (error) {
+        console.error("addClassificationView error" + error)
+    }
+}
+
+/* ***************************
+*  Process Add New Classification
+*  Assignment 4 - Task 2
+* ************************** */
+invCont.addNewClassification = async function (req, res) {
+    const { classification_name } = req.body
+    const result = await invModel.addClassification(classification_name)
+    let nav = await utilities.getNav()
+
+    if (result) {
+        req.flash("notice", `${classification_name} has been successfully added!`)
+    }
+    else {
+        req.flash("notice", `${classification_name} was not added. Please try again.`)
+    }
+
+    res.render("./inventory/management", {
+        title: "Inventory Management",
+        nav,
+        errors: null,
     })
 }
 

@@ -1,16 +1,16 @@
 const pool = require("../database/")
 
 /* ***************************
- *  Get all classification data
- * ************************** */
+*  Get all classification data
+* ************************** */
 async function getClassifications(){
   return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
 }
 
 /* ***************************
- *  Get all inventory items and classification_name by classification_id
- *  Week 3 - Learning Activity 1 Step 3
- * ************************** */
+*  Get all inventory items and classification_name by classification_id
+*  Week 3 - Learning Activity 1 - Step 3
+* ************************** */
 async function getInventoryByClassificationId(classification_id) {
   try {
     const data = await pool.query(
@@ -28,9 +28,9 @@ async function getInventoryByClassificationId(classification_id) {
 }
 
 /* ***************************
- *  Get single inventory item by inv_id
- *  Assignment 3 Task 1 - #2 > #3
- * ************************** */
+*  Get single inventory item by inv_id
+*  Assignment 3 - Task 1
+* ************************** */
 async function getInventoryByInvId(inv_id) {
   try {
     const data = await pool.query(
@@ -44,4 +44,33 @@ async function getInventoryByInvId(inv_id) {
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInvId}
+/* ***************************
+*  Add New Classification
+*  Assignment 4 - Task 2
+* ************************** */
+async function addClassification(classification_name) {
+  try{
+    const sql = "INSERT INTO classification(classification_name) VALUES ($1) RETURNING *"
+    return await pool.query(sql, [classification_name])
+  }
+  catch (error) {
+    return error.message
+  }
+}
+
+/* ***************************
+*  Check for Existing Classification Name in DB
+*  Assignment 4 - Task 2
+* ************************** */
+async function checkExistingClassification (classification_name) {
+  try {
+    const sql = "SELECT * FROM public.classification WHERE classification_name = $1"
+    const classification = await pool.query(sql, [classification_name])
+    return classification.rowCount
+  }
+  catch (error) {
+    return error.message
+  }
+}
+
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByInvId, addClassification, checkExistingClassification }

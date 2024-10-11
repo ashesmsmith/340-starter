@@ -1,3 +1,4 @@
+// Needed Resources
 // Week 4 - Learning Activity 1 - Step 2
 const express = require("express")
 const router =  new express.Router()
@@ -21,7 +22,7 @@ router.post("/register",
     regValidate.checkRegData,
     utilities.handleErrors(acctController.registerAccount));
 
-// Process the login attempt - Temporary Use Only
+// Login POST - Process the login attempt - Temporary Use Only
 // Week 4 - Team Activity - Step 4
 router.post("/login",
     regValidate.loginRules(),
