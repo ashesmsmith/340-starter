@@ -22,11 +22,20 @@ router.get('/', utilities.handleErrors(invController.buildManagementView));
 // Assignment 4 - Task 2
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassificationView));
 
+// Route to add new inventory
+// Assignment 4 - Task 3
+router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventoryView));
+
 // Add Classification POST
 // Assignment 4 - Task 2
 router.post("/add-classification", 
     invValidate.classificationRules(),
     invValidate.checkClassificationData,
     utilities.handleErrors(invController.addNewClassification));
+
+// Add Inventory POST
+// Assignment 4 - Task 3
+router.post("/add-inventory", 
+    utilities.handleErrors(invController.addNewInventory));
 
 module.exports = router;

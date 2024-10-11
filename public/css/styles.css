@@ -213,24 +213,30 @@ form {
 }
 
 form p {
-  font-size: .8rem;
   margin: .5rem auto;
 }
 
 form label {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 form input {
   display: block;
   margin: .5rem auto 1rem;
+  border: 1px solid darkblue;
   border-radius: 5px;
 }
 
-#login-btn, #reg-btn, #new-class-btn {
+form textarea, form select {
+  display: block;
+  margin: .5rem auto 1rem;
+}
+
+#login-btn, #reg-btn, #new-class-btn, #new-inv-btn {
   background-color: darkblue;
   color: white;
   font-size: 1.1rem;
+  margin: 1rem auto;
   padding: .5rem;
   border: none;
 }
