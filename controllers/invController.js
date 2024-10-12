@@ -136,8 +136,8 @@ invCont.addNewInventory = async function (req, res) {
         req.flash("notice", `${inv_year} ${inv_make} ${inv_model} was not added. Please try again.`)
     }
 
-    res.render("./inventory/add-inventory", {
-        title: "Add New Inventory",
+    res.render("./inventory/management", {
+        title: "Inventory Management",
         nav,
         errors: null,
     })

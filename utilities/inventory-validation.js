@@ -26,7 +26,7 @@ validate.classificationRules = () => {
 }
 
 /* ******************************
-*  Check data and return errors or continue to add Classification Name
+*  Check data and return errors or continue to Add Classification Name
 * ***************************** */
 validate.checkClassificationData = async (req, res, next) => {
     const { classification_name } = req.body
@@ -39,6 +39,120 @@ validate.checkClassificationData = async (req, res, next) => {
             title: "Add New Classification",
             nav,
             classification_name,
+        })
+        return
+    }
+    next()
+}
+
+/* **********************************
+*  Add New Inventory Validation Rules
+* ********************************* */
+validate.inventoryRules = () => {
+    return [
+        //inv_make letters only
+        body("inv_make")
+            .trim()
+            .escape()
+            .notEmpty()
+            .isAlpha(['en-US'])
+            .withMessage("Please provide a make."),
+
+        //inv_model
+        body("inv_model")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Please provide a model."),
+        
+        //inv_year numeric 4 digit limit
+        body("inv_year")
+            .trim()
+            .escape()
+            .notEmpty()
+            .isNumeric()
+            .isLength({min: 4, max: 4})
+            .withMessage("Please provide a year."),
+
+        //inv_description
+        body("inv_description")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Please provide a description."),
+
+        //inv_image
+        body("inv_image")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Please provide a image path."),
+
+        //inv_thumbnail
+        body("inv_thumbnail")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Please provide a thumbnail path."),
+
+        //inv_price numeric with decimal
+        body("inv_price")
+            .trim()
+            .escape()
+            .notEmpty()
+            .isNumeric()
+            .withMessage("Please provide a price."),
+
+        //inv_miles numeric
+        body("inv_miles")
+            .trim()
+            .escape()
+            .notEmpty()
+            .isNumeric()
+            .withMessage("Please provide the miles."),
+
+        //inv_color letters only
+        body("inv_color")
+            .trim()
+            .escape()
+            .notEmpty()
+            .isAlpha(['en-US'])
+            .withMessage("Please provide a color."),
+
+        //classification_id
+        body("classification_id")
+            .notEmpty()
+            .withMessage("Please provide a classification."),
+    ]
+}
+
+/* ******************************
+*  Check data and return errors or continue to Add Inventory
+* ***************************** */
+validate.checkInventoryData = async (req, res, next) => {
+    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, 
+        inv_price, inv_miles, inv_color, classification_id } = req.body;
+
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        let classificationList = await utilities.buildClassificationList(classification_id)
+        res.render("inventory/add-inventory", {
+            errors,
+            title: "Add New Inventory",
+            nav,
+            classificationList,
+            inv_make, 
+            inv_model, 
+            inv_year, 
+            inv_description, 
+            inv_image, 
+            inv_thumbnail, 
+            inv_price, 
+            inv_miles, 
+            inv_color, 
+            classification_id,
         })
         return
     }

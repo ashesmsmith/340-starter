@@ -36,6 +36,8 @@ router.post("/add-classification",
 // Add Inventory POST
 // Assignment 4 - Task 3
 router.post("/add-inventory", 
+    invValidate.inventoryRules(),
+    invValidate.checkInventoryData,
     utilities.handleErrors(invController.addNewInventory));
 
 module.exports = router;
