@@ -1,0 +1,24 @@
+<!-- Week 5 - Learning Activity 1 - Step 2 -->
+
+<!-- Content Heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+
+<!-- Message Block -->
+<%- messages() %>
+
+<!-- Errors Display -->
+<!-- Week 4 - Team Activity - Step 4 -->
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<!-- Account Management Display -->
+<h2>You're logged in!</h2>

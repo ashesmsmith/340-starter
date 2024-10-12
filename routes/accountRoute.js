@@ -13,6 +13,9 @@ router.get("/login", utilities.handleErrors(acctController.buildLogin));
 // Week 4 - Learning Activity 1 - Step 3
 router.get("/register", utilities.handleErrors(acctController.buildRegister));
 
+// Account Management Route
+// Week 5 - Learning Activity 1 - Step 2
+router.get("/account-management", utilities.handleErrors(acctController.buildAccountManagement));
 
 // Registration POST
 // Week 4 - Learning Activity 1 - Step 4
@@ -27,8 +30,6 @@ router.post("/register",
 router.post("/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
-    (req, res) => {
-        res.status(200).send('login process')
-    });
+    utilities.handleErrors(acctController.accountLogin));
 
 module.exports = router;

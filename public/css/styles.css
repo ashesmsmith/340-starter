@@ -212,10 +212,6 @@ form {
   border-radius: 10px;
 }
 
-form p {
-  margin: .5rem auto;
-}
-
 form label {
   font-size: 1.1rem;
 }
@@ -232,6 +228,11 @@ form textarea, form select {
   margin: .5rem auto 1rem;
 }
 
+form p {
+  font-size: .8rem;
+  margin: .5rem auto;
+}
+
 #login-btn, #reg-btn, #new-class-btn, #new-inv-btn {
   background-color: darkblue;
   color: white;
@@ -239,10 +240,6 @@ form textarea, form select {
   margin: 1rem auto;
   padding: .5rem;
   border: none;
-}
-
-#login-form a {
-  color: lightblue;
 }
 
 input:required:invalid, input:focus:invalid {
