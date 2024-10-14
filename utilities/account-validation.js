@@ -1,12 +1,12 @@
-// Week 4 - Learning Activity 2 - Step 3
+/* Week 4 - Learning Activity 2 - Step 3 */
 const utilities = require(".")
 const { body, validationResult } = require("express-validator")
 const validate = {}
 const accountModel = require("../models/account-model")
 
-/* **********************************
+/* ***************************
 *  Registration Data Validation Rules
-* ********************************* */
+* ************************** */
 validate.registrationRules = () => {
     return [
         // firstname is required and must be string
@@ -55,9 +55,9 @@ validate.registrationRules = () => {
     ]
 }
 
-/* ******************************
+/* ***************************
 *  Check data and return errors or continue to Registration
-* ***************************** */
+* ************************** */
 validate.checkRegData = async (req, res, next) => {
     const { account_firstname, account_lastname, account_email } = req.body
     let errors = []
@@ -77,10 +77,10 @@ validate.checkRegData = async (req, res, next) => {
     next()
 }
 
-/* ******************************
+/* ***************************
 *  Login Data Validation Rules
 *  Week 4 - Team Activity - Step 4
-* ***************************** */
+* ************************** */
 validate.loginRules = () => {
     return [
         // valid email is required
@@ -113,10 +113,10 @@ validate.loginRules = () => {
     ]
 }
 
-/* ******************************
+/* ***************************
 *  Check data and return errors or continue to login
 *  Week 4 - Team Activity - Step 4
-* ***************************** */
+* ************************** */
 validate.checkLoginData = async (req, res, next) => {
     const { account_email } = req.body
     let errors = []

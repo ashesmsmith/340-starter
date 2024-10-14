@@ -1,13 +1,13 @@
-/* Week 3-Model - View - Control Implementation for explanations*/
+/* Week 3-Model - View - Control Implementation for explanations */
 const { Pool } = require("pg")
 require("dotenv").config()
 
-/* ***************
- * Connection Pool
- * SSL Object needed for local testing of app
- * But will cause problems in production environment
- * If - else will make determination which to use
- * *************** */
+/* ***************************
+*  Connection Pool
+*  SSL Object needed for local testing of app
+*  But will cause problems in production environment
+*  If - else will make determination which to use
+* ************************** */
 let pool
 
 if (process.env.NODE_ENV == "development") {

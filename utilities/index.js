@@ -3,9 +3,9 @@ const Util = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
-/* **************************************
+/* ***************************
 *  Constructs the nav HTML unordered list
-* ************************************ */
+* ************************** */
 Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications()
     let list = "<ul>"
@@ -26,10 +26,10 @@ Util.getNav = async function (req, res, next) {
     return list
 }
 
-/* **************************************
+/* ***************************
 *  Build the classification view HTML
 *  Week 3 - Learning Activity 1 - Step 3
-* ************************************ */
+* ************************** */
 Util.buildClassificationGrid = async function(data) {
     let grid
     if(data.length > 0){
@@ -60,10 +60,10 @@ Util.buildClassificationGrid = async function(data) {
     return grid
 }
 
-/* **************************************
+/* ***************************
 *  Build the single view HTML
 *  Assignment 3 - Task 1 - #2 > #4
-* ************************************ */
+* ************************** */
 Util.buildSingleView = async function(vehicle) {
     let singleView = `<img class='inv-id-image' src='${vehicle.inv_image}' alt='${vehicle.inv_make} ${vehicle.inv_model}'>
     <div class='inv-id-view'>
@@ -75,10 +75,10 @@ Util.buildSingleView = async function(vehicle) {
     return singleView
 }
 
-/* **************************************
+/* ***************************
 *  Build the classification list for add-inventory view
 *  Assignment 4 - Task 3
-* ************************************ */
+* ************************** */
 Util.buildClassificationList = async function (classification_id = null) {
     try {
         let data = await invModel.getClassifications()
@@ -103,17 +103,17 @@ Util.buildClassificationList = async function (classification_id = null) {
     }
 }
 
-/* **************************************
+/* ***************************
 *  Middleware For Handling Errors
 *  Wrap other function in this for general error handling
-* ************************************ */
+* ************************** */
 Util.handleErrors = fn => (req, res, next) => 
     Promise.resolve(fn(req, res, next)).catch(next)
 
-/* **************************************
+/* ***************************
 *  Middleware - Check Token Validity
 *  Week 5 - Learning Activity 1 - Step 2
-* ************************************ */
+* ************************** */
 Util.checkJWTToken = (req, res, next) => {
     if (req.cookies.jwt) {
         jwt.verify(
@@ -135,10 +135,10 @@ Util.checkJWTToken = (req, res, next) => {
     }
 }
 
-/* **************************************
+/* ***************************
 *  Middleware - Check Login
 *  Week 5 - Learning Activity 1 - Step 3
-* ************************************ */
+* ************************** */
 Util.checkLogin = (req, res, next) => {
     if (res.locals.loggedin) {
         next()

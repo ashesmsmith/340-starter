@@ -1,13 +1,13 @@
-// Week 4 - Learning Activity 1 - Step 2, 3 & 4
+/*  Week 4 - Learning Activity 1 - Step 2, 3 & 4 */
 const utilities = require("../utilities")
 const accountModel = require("../models/account-model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 require ("dotenv").config()
 
-/* ****************************************
+/* ***************************
 *  login View
-* *************************************** */
+* ************************** */
 async function buildLogin (req, res, next) {
     let nav = await utilities.getNav()
     res.render("account/login", {
@@ -17,10 +17,10 @@ async function buildLogin (req, res, next) {
     })
 }
 
-/* ****************************************
+/* ***************************
 *  Registration View
 *  Week 4 - Learning Activity 1 - Step 3
-* *************************************** */
+* ************************** */
 async function buildRegister (req, res, next) {
     let nav = await utilities.getNav()
     res.render("account/register", {
@@ -30,10 +30,10 @@ async function buildRegister (req, res, next) {
     })
 }
 
-/* ****************************************
+/* ***************************
 *  Account Management View
 *  Week 5 - Learning Activity 1 - Step 2
-* *************************************** */
+* ************************** */
 async function buildAccountManagement (req, res, next) {
     let nav = await utilities.getNav()
     res.render("account/account-management", {
@@ -43,10 +43,10 @@ async function buildAccountManagement (req, res, next) {
     })
 }
 
-/* ****************************************
+/* ***************************
 *  Process Registration
 *  Week 4 - Learning Activity 1 - Step 4
-* *************************************** */
+* ************************** */
 async function registerAccount (req, res) {
     let nav = await utilities.getNav()
     const { account_firstname, account_lastname, account_email, account_password } = req.body
@@ -95,10 +95,10 @@ async function registerAccount (req, res) {
     }
 }
 
-/* ****************************************
+/* ***************************
 *  Process Login
 *  Week 5 - Learning Activity 1 - Step 2
-* *************************************** */
+* ************************** */
 async function accountLogin(req, res) {
     let nav = await utilities.getNav()
     const { account_email, account_password } = req.body
@@ -132,7 +132,5 @@ async function accountLogin(req, res) {
         return new Error('Access Forbidden')
     }
 }
-
-
 
 module.exports = { buildLogin, buildRegister, buildAccountManagement, registerAccount, accountLogin }

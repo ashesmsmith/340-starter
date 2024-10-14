@@ -4,9 +4,9 @@ const { body, validationResult } = require("express-validator")
 const validate = {}
 const invModel = require("../models/inventory-model")
 
-/* **********************************
+/* ***************************
 *  Add New Classification Name Validation Rules
-* ********************************* */
+* ************************** */
 validate.classificationRules = () => {
     return [
         // classification name must be a sting with only letters
@@ -25,9 +25,9 @@ validate.classificationRules = () => {
     ]
 }
 
-/* ******************************
+/* ***************************
 *  Check data and return errors or continue to Add Classification Name
-* ***************************** */
+* ************************** */
 validate.checkClassificationData = async (req, res, next) => {
     const { classification_name } = req.body
     let errors = []
@@ -45,9 +45,9 @@ validate.checkClassificationData = async (req, res, next) => {
     next()
 }
 
-/* **********************************
+/* ***************************
 *  Add New Inventory Validation Rules
-* ********************************* */
+* ************************** */
 validate.inventoryRules = () => {
     return [
         //inv_make letters only
@@ -126,9 +126,9 @@ validate.inventoryRules = () => {
     ]
 }
 
-/* ******************************
+/* ***************************
 *  Check data and return errors or continue to Add Inventory
-* ***************************** */
+* ************************** */
 validate.checkInventoryData = async (req, res, next) => {
     const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, 
         inv_price, inv_miles, inv_color, classification_id } = req.body;

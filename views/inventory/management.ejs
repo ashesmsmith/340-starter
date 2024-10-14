@@ -11,8 +11,17 @@
 <%- messages() %>
 
 <!-- Management Display -->
+<!-- Week 5 - Learning Activity 2 - Step 1 -->
 <div id="management-list">
     <h2>Management Options</h2>
     <a href="/inv/add-classification">Add New Classification</a>
     <a href="/inv/add-inventory">Add New Vehicle</a>
+
+    <h2>Manage Inventory</h2>
+    <p>Select a classification to see current inventory.</p>
+    <%- classificationSelect %>
+    <table id="inventoryDisplay"></table>
+    <noscript>JavaScript must be enabled to use this page.</noscript>
 </div>
+
+<script src="../../js/inventory.js"></script>

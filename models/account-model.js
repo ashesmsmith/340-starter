@@ -1,9 +1,9 @@
-// Week 4 - Learning Activity 1 - Step 4
+/* Week 4 - Learning Activity 1 - Step 4 */
 const pool = require('../database/')
 
-/* *****************************
+/* ***************************
 *  Register New Account
-* *************************** */
+* ************************** */
 async function registerAccount (account_firstname, account_lastname, account_email, account_password) {
     try {
         const sql = `INSERT INTO account (account_firstname, account_lastname, 
@@ -18,10 +18,10 @@ async function registerAccount (account_firstname, account_lastname, account_ema
     }
 }
 
-/* **********************
+/* ***************************
 *  Check for Existing Email in DB
 *  Week 4 - Team Activity - Step 4
-* ********************* */
+* ************************** */
 async function checkExistingEmail (account_email) {
     try {
         const sql = `SELECT * FROM account WHERE account_email = $1`
@@ -34,10 +34,10 @@ async function checkExistingEmail (account_email) {
     }
 }
 
-/* *****************************
+/* ***************************
 *  Return account data using email address
 *  Week 5 - Learning Activity 1 - Step 2
-* ***************************** */
+* ************************** */
 async function getAccountByEmail (account_email) {
     try {
         const result = await pool.query(

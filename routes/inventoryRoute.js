@@ -14,17 +14,21 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 // Assignment 3 - Task 1
 router.get("/detail/:inv_id", utilities.handleErrors(invController.buildByInvId));
 
-// Route to Inventory Management View - add classifications and vehicles
+// Route to Inventory Management View
 // Assignment 4 - Task 1
 router.get('/', utilities.handleErrors(invController.buildManagementView));
 
-// Route to add a new classification
+// Route to Add New Classification
 // Assignment 4 - Task 2
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassificationView));
 
-// Route to add new inventory
+// Route to Add New Inventory
 // Assignment 4 - Task 3
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventoryView));
+
+// Route to Manage Inventory by Id
+// Week 5 - Learning Activity 2 - Step 1
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
 
 // Add Classification POST
 // Assignment 4 - Task 2
