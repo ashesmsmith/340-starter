@@ -15,7 +15,7 @@ router.get("/register", utilities.handleErrors(acctController.buildRegister));
 
 // Account Management Route
 // Week 5 - Learning Activity 1 - Step 2
-router.get("/account-management", utilities.handleErrors(acctController.buildAccountManagement));
+router.get("/", utilities.checkLogin, utilities.handleErrors(acctController.buildAccountManagement));
 
 // Registration POST
 // Week 4 - Learning Activity 1 - Step 4
@@ -27,6 +27,7 @@ router.post("/register",
 
 // Login POST - Process the login attempt - Temporary Use Only
 // Week 4 - Team Activity - Step 4
+// Week 5 - Learning Activity 1 - Step 2
 router.post("/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,

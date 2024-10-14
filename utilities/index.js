@@ -3,9 +3,9 @@ const Util = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
-/* ************************
+/* **************************************
 *  Constructs the nav HTML unordered list
-************************** */
+* ************************************ */
 Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications()
     let list = "<ul>"
@@ -103,17 +103,17 @@ Util.buildClassificationList = async function (classification_id = null) {
     }
 }
 
-/* ****************************************
+/* **************************************
 *  Middleware For Handling Errors
-*  Wrap other function in this for 
-*  General Error Handling
-**************************************** */
+*  Wrap other function in this for general error handling
+* ************************************ */
 Util.handleErrors = fn => (req, res, next) => 
     Promise.resolve(fn(req, res, next)).catch(next)
 
-/* ****************************************
-*  Middleware to check token validity
-**************************************** */
+/* **************************************
+*  Middleware - Check Token Validity
+*  Week 5 - Learning Activity 1 - Step 2
+* ************************************ */
 Util.checkJWTToken = (req, res, next) => {
     if (req.cookies.jwt) {
         jwt.verify(
@@ -132,6 +132,20 @@ Util.checkJWTToken = (req, res, next) => {
     } 
     else {
         next()
+    }
+}
+
+/* **************************************
+*  Middleware - Check Login
+*  Week 5 - Learning Activity 1 - Step 3
+* ************************************ */
+Util.checkLogin = (req, res, next) => {
+    if (res.locals.loggedin) {
+        next()
+    } 
+    else {
+        req.flash("notice", "Please log in.")
+        return res.redirect("/account/login")
     }
 }
 
