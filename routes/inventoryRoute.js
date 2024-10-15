@@ -26,9 +26,13 @@ router.get("/add-classification", utilities.handleErrors(invController.buildAddC
 // Assignment 4 - Task 3
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventoryView));
 
-// Route to Manage Inventory by Id
+// Route to Manage Inventory by Classification Id
 // Week 5 - Learning Activity 2 - Step 1
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
+// Route to Manage Inventory by Inventory Id
+// Week 5 - Learning Activity 2 - Step 2
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildInventoryEditorView));
 
 // Add Classification POST
 // Assignment 4 - Task 2

@@ -1,4 +1,4 @@
-<!-- Assignment 4 - Task 3 -->
+<!-- Week 5 - Learning Activity 2 - Step 2 -->
 
 <!-- Content Heading -->
 <% if (title) { %>
@@ -11,7 +11,6 @@
 <%- messages() %>
 
 <!-- Errors Display -->
-<!-- Assignment 4 - Task 3 -->
 <% if (errors) { %>
     <ul class="notice">
     <% errors.array().forEach(error => { %>
@@ -20,8 +19,8 @@
     </ul>
 <% } %>
 
-<!-- Add Inventory Display -->
-<form id="add-inv-form" action="/inv/add-inventory" method="post">
+<!-- Inventory Editor Display -->
+<form id="edit-inv-form" action="/inv/update" method="post">
     <p>*All fields are required.</p>
 
     <label for="inv_make">Make:</label>
@@ -45,11 +44,11 @@
 
     <label for="inv_image">Image Path:</label>
     <input type="text" name="inv_image" id="inv_image" required 
-        value="/images/vehicles/no-image.png">
+        value="<%= locals.inv_image %>">
 
     <label for="inv_thumbnail">Thumbnail Path:</label>
     <input type="text" name="inv_thumbnail" id="inv_thumbnail" required 
-        value="/images/vehicles/no-image-tn.png">
+        value="<%= locals.inv_thumbnail %>">
 
     <label for="inv_price">Price:</label>
     <input type="number" name="inv_price" id="inv_price" required 
@@ -64,7 +63,7 @@
         value="<%= locals.inv_color %>" pattern="^[a-zA-Z]+$">
 
     <label for="classification_id">Classification:</label>
-    <%- classificationList %>
+    <%- classificationSelect %>
 
-    <input type="submit" id="new-inv-btn" value="Add Inventory">
+    <input type="submit" id="new-inv-btn" value="Update Vehicle">
 </form>
