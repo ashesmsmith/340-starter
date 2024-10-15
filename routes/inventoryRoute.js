@@ -48,4 +48,11 @@ router.post("/add-inventory",
     invValidate.checkInventoryData,
     utilities.handleErrors(invController.addNewInventory));
 
+// Edit Inventory POST
+// Week 5 - Learning Activity 2 - Step 3
+router.post("/update/",
+    invValidate.inventoryRules(),
+    invValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory));
+
 module.exports = router;

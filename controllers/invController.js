@@ -48,8 +48,8 @@ invCont.buildManagementView = async function (req, res, next) {
         res.render("./inventory/management", {
             title: "Inventory Management",
             nav,
-            classificationSelect,
             errors: null,
+            classificationSelect,
         })
     }
     catch (error) {
@@ -76,7 +76,7 @@ invCont.buildAddClassificationView = async function (req, res, next) {
 }
 
 /* ***************************
-*  Process Add New Classification
+*  Add New Classification
 *  Assignment 4 - Task 2
 * ************************** */
 invCont.addNewClassification = async function (req, res) {
@@ -109,8 +109,8 @@ invCont.buildAddInventoryView = async function (req, res, next) {
         res.render("./inventory/add-inventory", {
             title: "Add New Inventory",
             nav,
-            classificationList,
             errors: null,
+            classificationList,
         })
     }
     catch (error) {
@@ -119,7 +119,7 @@ invCont.buildAddInventoryView = async function (req, res, next) {
 }
 
 /* ***************************
-*  Process Add New Inventory
+*  Add New Inventory
 *  Assignment 4 - Task 3
 * ************************** */
 invCont.addNewInventory = async function (req, res) {
@@ -131,6 +131,7 @@ invCont.addNewInventory = async function (req, res) {
         classification_id)
 
     let nav = await utilities.getNav()
+    const classificationSelect = await utilities.buildClassificationList()
 
     if (result) {
         req.flash("notice", `${inv_year} ${inv_make} ${inv_model} has been successfully added!`)
@@ -143,6 +144,7 @@ invCont.addNewInventory = async function (req, res) {
         title: "Inventory Management",
         nav,
         errors: null,
+        classificationSelect,
     })
 }
 
@@ -175,8 +177,8 @@ invCont.buildInventoryEditorView = async function (req, res, next) {
         res.render("./inventory/edit-inventory", {
             title: "Edit " + itemName,
             nav,
-            classificationSelect: classificationSelect,
             errors: null,
+            classificationSelect: classificationSelect,
             inv_id: itemData.inv_id,
             inv_make: itemData.inv_make,
             inv_model: itemData.inv_model,
@@ -192,6 +194,49 @@ invCont.buildInventoryEditorView = async function (req, res, next) {
     }
     catch (error) {
         console.error("buildInventoryEditorView error" + error)
+    }
+}
+
+/* ***************************
+*  Update Inventory
+*  Week 5 - Learning Activity 2 - Step 3
+* ************************** */
+invCont.updateInventory = async function (req, res) {
+    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, 
+        inv_price, inv_miles, inv_color, classification_id, inv_id } = req.body
+    
+    const result = await invModel.updateInventory(inv_make, inv_model, inv_year, 
+        inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, 
+        classification_id, inv_id)
+
+    let nav = await utilities.getNav()
+
+    if (result) {
+        const itemName = result.inv_make + " " + result.inv_model
+        req.flash("notice", `${itemName} has been successfully updated!`)
+        res.redirect("/inv/")
+    }
+    else {
+        const classificationSelect = await utilities.buildClassificationList(classification_id)
+        const itemName = result.inv_make + " " + result.inv_model
+        req.flash("notice", `${itemName} update failed.`)
+        res.status(501).render("inventory/edit-inventory", {
+            title: "Edit " + itemName,
+            nav,
+            errors: null,
+            classificationSelect: classificationSelect,
+            inv_make,
+            inv_model,
+            inv_year,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_miles,
+            inv_color,
+            classification_id,
+            inv_id,
+        })
     }
 }
 

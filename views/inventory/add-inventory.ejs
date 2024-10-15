@@ -39,9 +39,8 @@
 
     <label for="inv_description">Description:</label>
     <textarea name="inv_description" id="inv_description" required
-        value="<%= locals.inv_description %>" rows="5" cols="30"
-        placeholder="Enter vehicle description.">
-    </textarea>
+        rows="5" cols="30" placeholder="Enter vehicle description."
+        ><%= locals.inv_description %></textarea>
 
     <label for="inv_image">Image Path:</label>
     <input type="text" name="inv_image" id="inv_image" required 
@@ -66,5 +65,5 @@
     <label for="classification_id">Classification:</label>
     <%- classificationList %>
 
-    <input type="submit" id="new-inv-btn" value="Add Inventory">
+    <button type="submit">Add Inventory</button>
 </form>

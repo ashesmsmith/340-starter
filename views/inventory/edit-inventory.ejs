@@ -20,7 +20,7 @@
 <% } %>
 
 <!-- Inventory Editor Display -->
-<form id="edit-inv-form" action="/inv/update" method="post">
+<form id="updateForm" action="/inv/update" method="post">
     <p>*All fields are required.</p>
 
     <label for="inv_make">Make:</label>
@@ -37,10 +37,8 @@
         placeholder="YYYY">
 
     <label for="inv_description">Description:</label>
-    <textarea name="inv_description" id="inv_description" required
-        value="<%= locals.inv_description %>" rows="5" cols="30"
-        placeholder="Enter vehicle description.">
-    </textarea>
+    <textarea rows="5" cols="30" name="inv_description" id="inv_description" required  
+        placeholder="Enter vehicle description."><%= locals.inv_description %></textarea>
 
     <label for="inv_image">Image Path:</label>
     <input type="text" name="inv_image" id="inv_image" required 
@@ -65,5 +63,10 @@
     <label for="classification_id">Classification:</label>
     <%- classificationSelect %>
 
-    <input type="submit" id="new-inv-btn" value="Update Vehicle">
+    <button type="submit" disabled>Update Vehicle</button>
+
+    <input type="hidden" name="inv_id" <% if(locals.inv_id) {%> value="<%= locals.inv_id %>"
+    <% } %>>
 </form>
+
+<script src="../../js/inv-update.js"></script>
