@@ -84,14 +84,12 @@ validate.inventoryRules = () => {
         //inv_image
         body("inv_image")
             .trim()
-            .escape()
             .notEmpty()
             .withMessage("Please provide a image path."),
 
         //inv_thumbnail
         body("inv_thumbnail")
             .trim()
-            .escape()
             .notEmpty()
             .withMessage("Please provide a thumbnail path."),
 
