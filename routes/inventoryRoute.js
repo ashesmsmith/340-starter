@@ -30,9 +30,13 @@ router.get("/add-inventory", utilities.handleErrors(invController.buildAddInvent
 // Week 5 - Learning Activity 2 - Step 1
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
 
-// Route to Manage Inventory by Inventory Id
+// Route to Edit Inventory by Inventory Id
 // Week 5 - Learning Activity 2 - Step 2
 router.get("/edit/:inv_id", utilities.handleErrors(invController.buildInventoryEditorView));
+
+// Route to Delete Inventory by Inventory Id
+// Week 5 - Team Activity - Step 1
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteConfirmationView));
 
 // Add Classification POST
 // Assignment 4 - Task 2
@@ -54,5 +58,10 @@ router.post("/update/",
     invValidate.inventoryRules(),
     invValidate.checkUpdateData,
     utilities.handleErrors(invController.updateInventory));
+
+// Delete Inventory POST
+// Week 5 - Team Activity - Step 1
+router.post("/delete/", 
+    utilities.handleErrors(invController.deleteInventory));
 
 module.exports = router;

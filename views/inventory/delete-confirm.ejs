@@ -1,0 +1,47 @@
+<!-- Week 5 - Team Activity - Step 1 -->
+
+<!-- Content Heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+
+<!-- Message Block -->
+<%- messages() %>
+
+<!-- Errors Display -->
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<!-- Delete Inventory Display -->
+<form id="deleteForm" action="/inv/delete" method="post">
+    <p>Please confirm vehicle details before deleting.</p>
+    <p>DELETE IS PERMANENT!</p>
+
+    <label for="inv_make">Make:</label>
+    <input type="text" name="inv_make" id="inv_make" readonly 
+        value="<%= locals.inv_make %>">
+
+    <label for="inv_model">Model:</label>
+    <input type="text" name="inv_model" id="inv_model" readonly 
+        value="<%= locals.inv_model %>">
+
+    <label for="inv_year">Year:</label>
+    <input type="number" name="inv_year" id="inv_year" readonly
+        value="<%= locals.inv_year %>">
+
+    <label for="inv_price">Price:</label>
+    <input type="number" name="inv_price" id="inv_price" readonly 
+        value="<%= locals.inv_price %>">
+
+    <button type="submit">Delete Vehicle</button>
+
+    <input type="hidden" name="inv_id" <% if(locals.inv_id) {%> value="<%= locals.inv_id %>"
+    <% } %>>
+</form>

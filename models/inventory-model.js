@@ -119,9 +119,26 @@ async function updateInventory(inv_make, inv_model, inv_year, inv_description, i
       return data.rows[0]
     }
     catch (error) {
-      console.error("model error: " + error)
+      console.error("updateInventory error: " + error)
+    }
+}
+
+/* ***************************
+*  Delete Inventory
+*  Week 5 - Team Activity - Step 1
+* ************************** */
+async function deleteInventory(inv_id) {
+    try {
+      const sql = `DELETE FROM public.inventory 
+      WHERE inv_id = $1`
+
+      const data = await pool.query(sql, [inv_id])
+      return data
+    }
+    catch (error) {
+      console.error("deleteInventory error: " + error)
     }
 }
 
 module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByInvId, 
-  addClassification, checkExistingClassification, addInventory, updateInventory }
+  addClassification, checkExistingClassification, addInventory, updateInventory, deleteInventory }
