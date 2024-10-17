@@ -69,7 +69,7 @@ async function addClassification(classification_name) {
 async function checkExistingClassification (classification_name) {
   try {
     const sql = `SELECT * FROM public.classification 
-    WHERE classification_name = $1`
+    WHERE UPPER(classification_name) = UPPER($1)` // UPPER added to make comparison case insensitive
     const classification = await pool.query(sql, [classification_name])
     return classification.rowCount
   }
