@@ -182,14 +182,18 @@ INVENTORY BY SINGLE VIEW (INVENTORY ID)
 }
 
 /*
-MANAGEMENT VIEW
+MANAGEMENT VIEWS
 */
-#management-list {
+#management-list, #acct-management {
   text-align: center;
   margin: 1rem auto;
   padding: 2rem;
   border: 2px solid #086788;
   border-radius: 10px;
+}
+
+#acct-management h3 {
+  margin: 1rem auto;
 }
 
 #management-list a {
@@ -259,7 +263,7 @@ form textarea, form select {
 }
 
 form p {
-  text-align: left;
+  text-align: center;
   margin: 1rem auto;
 }
 
@@ -376,8 +380,8 @@ h1.inv-id-view {
 }
 
 /*
-MANAGEMENT VIEW
+MANAGEMENT VIEWS
 */
-#management-list {
+#management-list, #acct-management {
   grid-column: 1/3;
 }
