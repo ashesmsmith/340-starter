@@ -3,7 +3,7 @@ const pool = require("../database/")
 /* ***************************
 *  Get all classification data
 * ************************** */
-async function getClassifications(){
+async function getClassifications (){
   return await pool.query(`SELECT * FROM public.classification 
     ORDER BY classification_name`)
 }
@@ -12,7 +12,7 @@ async function getClassifications(){
 *  Get all inventory items and classification_name by classification_id
 *  Week 3 - Learning Activity 1 - Step 3
 * ************************** */
-async function getInventoryByClassificationId(classification_id) {
+async function getInventoryByClassificationId (classification_id) {
   try {
     const data = await pool.query(
       `SELECT * FROM public.inventory AS i
@@ -32,7 +32,7 @@ async function getInventoryByClassificationId(classification_id) {
 *  Get single inventory item by inv_id
 *  Assignment 3 - Task 1
 * ************************** */
-async function getInventoryByInvId(inv_id) {
+async function getInventoryByInvId (inv_id) {
   try {
     const data = await pool.query(
       `SELECT * FROM public.inventory AS i
@@ -50,7 +50,7 @@ async function getInventoryByInvId(inv_id) {
 *  Add New Classification
 *  Assignment 4 - Task 2
 * ************************** */
-async function addClassification(classification_name) {
+async function addClassification (classification_name) {
   try {
     const sql = `INSERT INTO classification(classification_name) 
     VALUES ($1) 
@@ -82,8 +82,8 @@ async function checkExistingClassification (classification_name) {
 *  Add New Inventory
 *  Assignment 4 - Task 3
 * ************************** */
-async function addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, 
-  inv_thumbnail, inv_price, inv_miles, inv_color, classification_id) {
+async function addInventory (inv_make, inv_model, inv_year, inv_description, inv_image, 
+    inv_thumbnail, inv_price, inv_miles, inv_color, classification_id) {
     try {
       const sql = `INSERT INTO inventory(inv_make, inv_model, inv_year, inv_description, 
       inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id) 
@@ -102,8 +102,8 @@ async function addInventory(inv_make, inv_model, inv_year, inv_description, inv_
 *  Update Inventory
 *  Week 5 - Learning Activity 2 - Step 3
 * ************************** */
-async function updateInventory(inv_make, inv_model, inv_year, inv_description, inv_image, 
-  inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, inv_id) {
+async function updateInventory (inv_make, inv_model, inv_year, inv_description, inv_image, 
+    inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, inv_id) {
     try {
       const sql = `UPDATE public.inventory 
       SET inv_make = $1, inv_model = $2, inv_year = $3, inv_description = $4, 
@@ -127,7 +127,7 @@ async function updateInventory(inv_make, inv_model, inv_year, inv_description, i
 *  Delete Inventory
 *  Week 5 - Team Activity - Step 1
 * ************************** */
-async function deleteInventory(inv_id) {
+async function deleteInventory (inv_id) {
     try {
       const sql = `DELETE FROM public.inventory 
       WHERE inv_id = $1`

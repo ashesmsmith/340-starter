@@ -4,6 +4,13 @@
     </span>
     
     <div id="tools">
-        <a title="Click to log in" href="/account/login">My Account</a>
+        <!-- Display Options based on loggedIn -->
+        <!-- Assignment 5 - Step 1  -->
+        <% if (loggedIn) { %>
+            <a title="Click to manage account" href="/account/">Welcome <%= accountData.account_firstname %>!</a>
+            <a title="Click to logout" href="/account/logout">Logout</a>
+        <% } else { %>
+            <a title="Click to login" href="/account/login">My Account</a>
+        <% } %>
     </div>
 </header>

@@ -20,6 +20,7 @@ const session = require("express-session")
 const pool = require("./database/")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const validate = require("./utilities/account-validation")
 
 /* ***********************
  * Middleware
@@ -54,8 +55,13 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 // Week 5 - Learning Activity 1 - Step 2
 app.use(cookieParser())
 
+// If a token is present validate it - Universal for all routes
 // Week 5 - Learning Activity 1 - Step 2
 app.use(utilities.checkJWTToken)
+
+// Set loggedIn value
+// Assignment 5 - Task 1
+app.use(validate.checkAuthentication);
 
 /* ***********************
  * View Engine and Templates

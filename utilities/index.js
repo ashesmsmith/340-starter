@@ -127,7 +127,7 @@ Util.checkJWTToken = (req, res, next) => {
                     return res.redirect("/account/login")
                 }
             res.locals.accountData = accountData
-            res.locals.loggedin = 1
+            res.locals.loggedIn = true
             next()
         })
     } 
@@ -141,12 +141,30 @@ Util.checkJWTToken = (req, res, next) => {
 *  Week 5 - Learning Activity 1 - Step 3
 * ************************** */
 Util.checkLogin = (req, res, next) => {
-    if (res.locals.loggedin) {
+    if (res.locals.loggedIn) {
         next()
     } 
     else {
-        req.flash("notice", "Please log in.")
+        req.flash("notice", "Please login.")
         return res.redirect("/account/login")
+    }
+}
+
+/* ***************************
+*  Middleware - Admin or Employee Required
+*  Assignment 5 - Task 2
+* ************************** */
+Util.requireAdminOrEmployee = (req, res, next) => {
+    const accountData = req.session.accountData;
+    // If the account type is Admin or Employee continue to page
+    if (accountData && (accountData.accountType === "Admin" || 
+        accountData.account_type === "Employee")) {
+        next();
+    } 
+    // Otherwise deny access
+    else {
+        req.flash("notice", "Page Access Denied.");
+        return res.redirect("/account/login");
     }
 }
 
