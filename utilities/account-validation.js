@@ -221,4 +221,25 @@ validate.updatePasswordRules = () => {
     ]
 }
 
+/* ***************************
+*  Check data and return errors or continue password update
+*  Assignment 5 - Task 4
+* ************************** */
+validate.checkUpdatePasswordData = async (req, res, next) => {
+    const { account_password } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        res.render("account/update", {
+            errors,
+            title: "Update Account Information",
+            nav,
+            account_password,
+        })
+        return
+    }
+    next()
+}
+
 module.exports = validate

@@ -193,11 +193,19 @@ async function updateAccountInformation (req, res) {
         account_email, account_id)
 
     if(result) {
+        const accountData = await accountModel.getAccountById(account_id)
+
+        // update session data
+        req.session.accountData.account_firstname = accountData.account_firstname
+        req.session.accountData.account_lastname = accountData.account_lastname
+        req.session.accountData.account_email = accountData.account_email
+
         req.flash("notice", "Account Information was successfully updated!")
         res.render("account/account-management", {
             title: "Account Management",
             nav,
             errors: null,
+            
         })
     }
     else {
@@ -219,7 +227,7 @@ async function updateAccountInformation (req, res) {
 * ************************** */
 async function updateAccountPassword (req, res) {
     let nav = await utilities.getNav()
-    const { account_password } = req.body
+    const { account_id, account_password } = req.body
 
     let hashedPassword
     try {
@@ -234,22 +242,22 @@ async function updateAccountPassword (req, res) {
         })
     }
 
-    const result = await accountModel.changePassword(account_password)
+    const result = await accountModel.changePassword(hashedPassword, account_id)
 
     if (result) {
         req.flash("notice", "Password was successfully updated!")
-        res.render("account/update", {
-            title: "Update Account Information",
+        res.status(201).render("account/account-management", {
+            title: "Account Management",
             nav,
-            errors: null
+            errors: null,
         })
     }
     else {
         req.flash("notice", "Password update failed.")
-        res.render("account/update", {
+        res.status(501).render("account/update", {
             title: "Update Account Information",
             nav,
-            errors: null
+            errors: null,
         })
     }
 }
@@ -262,6 +270,10 @@ async function logout (req, res) {
     try {
         res.clearCookie("jwt")
         res.clearCookie("sessionId")
+
+        // reset locals
+        res.locals.loggedIn = false
+        res.locals.accountData = {}
 
         let nav = await utilities.getNav()
         res.render("index", {

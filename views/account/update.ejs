@@ -39,13 +39,13 @@
     <% } %>>
 </form>
 
-<form id="changePasswordForm" action="/account/update-password" method="post">
+<form id="changePasswordForm" action="/account/change-password" method="post">
     <label for="account_password">New Password:</label>
     <p>Password must be minimum of 12 characters and contain 1 capital letter, 1 number, and 1 special character</p>
     <input type="password" name="account_password" id="account_password"
         pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
-    <button type="submit">Update Password</button>
+    <button type="submit">Change Password</button>
 
     <input type="hidden" name="account_id" <% if(locals.account_id) {%> value="<%= locals.account_id %>"
     <% } %>>

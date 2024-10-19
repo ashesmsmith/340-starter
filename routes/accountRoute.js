@@ -56,8 +56,9 @@ router.post("/update",
 
 // Update Password POST
 // Assignment 5 - Task 5
-router.post("/update-password",
+router.post("/change-password",
     regValidate.updatePasswordRules(),
+    regValidate.checkUpdatePasswordData,
     utilities.handleErrors(acctController.updateAccountPassword));
 
 module.exports = router;

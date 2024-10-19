@@ -1,5 +1,4 @@
 /* Week 4 - Learning Activity 1 - Step 4 */
-const { updatePassword } = require('../controllers/acctController')
 const pool = require('../database/')
 
 /* ***************************
