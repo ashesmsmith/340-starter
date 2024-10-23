@@ -55,6 +55,13 @@ router.get("/edit/:inv_id",
 router.get("/delete/:inv_id", 
     utilities.handleErrors(invController.buildDeleteConfirmationView));
 
+// Route to Add a Review
+// Assignment 6
+router.get("/add-review/:inv_id",
+    utilities.checkLogin,
+    utilities.handleErrors(invController.buildAddReviewView));
+
+
 // Add Classification POST
 // Assignment 4 - Task 2
 // Assignment 5 - Task 2
@@ -92,5 +99,13 @@ router.post("/delete/",
     utilities.checkLogin, 
     utilities.requireAdminOrEmployee,
     utilities.handleErrors(invController.deleteInventory));
+
+// Add Review POST
+// Assignment 6
+router.post("/add-review",
+    utilities.checkLogin,
+    invValidate.reviewRules(),
+    invValidate.checkReviewData,
+    utilities.handleErrors(invController.addNewReview));
 
 module.exports = router;

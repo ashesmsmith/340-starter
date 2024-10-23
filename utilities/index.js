@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const acctModel = require("../models/account-model")
 const Util = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -65,11 +66,12 @@ Util.buildClassificationGrid = async function(data) {
 *  Assignment 3 - Task 1 - #2 > #4
 * ************************** */
 Util.buildSingleView = async function(vehicle) {
-    let singleView = `<img class='inv-id-image' src='${vehicle.inv_image}' alt='${vehicle.inv_make} ${vehicle.inv_model}'>
+    let singleView = `
+    <img class='inv-id-image' src='${vehicle.inv_image}' alt='${vehicle.inv_make} ${vehicle.inv_model}'>
     <div class='inv-id-view'>
-    <h2>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)} USD</h2>
-    <h3>${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</h3>
-    <p>${vehicle.inv_description}</p>
+        <h2>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)} USD</h2>
+        <h3>${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</h3>
+        <p>${vehicle.inv_description}</p>
     </div>`
 
     return singleView
@@ -165,6 +167,37 @@ Util.requireAdminOrEmployee = (req, res, next) => {
     else {
         req.flash("notice", "Page Access Denied.");
         return res.redirect("/account/login");
+    }
+}
+
+/* ***************************
+*  Build the review section on single view
+*  Assignment 6
+* ************************** */
+Util.buildReviewSection = async function (inv_id) {
+    try {
+        let data = await invModel.getReviews(inv_id)
+
+        let reviewSection = `<div id="reviews">
+            <h3>Reviews</h3>`
+
+        if (data) {
+            data.rows.forEach((row) => {
+                reviewSection += `<div>
+                    <h4>${row.review_title}</h4>
+                    <p>${row.review_text}</p>
+                    <p><i>${row.review_name}</i></p>
+                    </div>`
+            })
+        }
+
+        reviewSection += `<a href="../add-review/${inv_id}"><button type="submit">Add New Review</button></a>
+            </div>`
+        
+        return reviewSection
+    }
+    catch (error) {
+        throw error;
     }
 }
 

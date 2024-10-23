@@ -1,0 +1,38 @@
+<!-- Assignment 6 -->
+
+<!-- Content Heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+
+<!-- Message Block -->
+<%- messages() %>
+
+<!-- Errors Display -->
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<!-- Add Review Display -->
+<form id="add-review-form" action="/inv/add-review" method="post">
+    <h2><%= vehicleName %> Review</h2>
+
+    <label for="review_title">Review Title:</label>
+    <input type="text" name="review_title" id="review_title" required>
+
+    <label for="review_text">Please enter your review below:</label>
+    <textarea rows="5" cols="30" name="review_text" id="review_text"></textarea>
+
+    <label for="review_name">Display Name:</label>
+    <input type="text" name="review_name" id="review_name" required>
+
+    <button type="submit">Share Review</button>
+
+    <input type="hidden" name="inv_id" value="<%= inv_id %>">
+</form>

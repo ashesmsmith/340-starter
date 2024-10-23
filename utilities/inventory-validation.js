@@ -192,4 +192,39 @@ validate.checkUpdateData = async (req, res, next) => {
     next()
 }
 
+
+/* ***************************
+*  Add New Review Validation Rules
+* ************************** */
+validate.reviewRules = () => {
+    return [
+        body("review_text")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Please provide a review."),
+    ]
+}
+
+/* ***************************
+*  Check data and return errors or continue to Add Review
+* ************************** */
+validate.checkReviewData = async (req, res, next) => {
+    const { review_text } = req.body;
+
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        res.render("inventory/add-review", {
+            errors,
+            title: "Add New Review",
+            nav,
+            review_text,
+        })
+        return
+    }
+    next()
+}
+
 module.exports = validate

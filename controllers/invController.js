@@ -27,12 +27,15 @@ invCont.buildByInvId = async function (req, res, next) {
     const inv_id = req.params.inv_id
     const data = await invModel.getInventoryByInvId(inv_id)
     const singleView = await utilities.buildSingleView(data)
+    const reviewSection = await utilities.buildReviewSection(inv_id, req.session.accountData.account_id)
     let nav = await utilities.getNav()
     const vehicleName = `${data.inv_year} ${data.inv_make} ${data.inv_model}`
+
     res.render("./inventory/single", {
         title: vehicleName,
         nav,
         singleView,
+        reviewSection,
     })
 }
 
@@ -53,7 +56,7 @@ invCont.buildManagementView = async function (req, res, next) {
         })
     }
     catch (error) {
-        console.error("buildManagementView error" + error)
+        console.error("buildManagementView " + error)
     }
 }
 
@@ -71,7 +74,7 @@ invCont.buildAddClassificationView = async function (req, res, next) {
         })
     }
     catch (error) {
-        console.error("buildAddClassificationView error" + error)
+        console.error("buildAddClassificationView " + error)
     }
 }
 
@@ -116,7 +119,7 @@ invCont.buildAddInventoryView = async function (req, res, next) {
         })
     }
     catch (error) {
-        console.error("buildAddInventoryView error" + error)
+        console.error("buildAddInventoryView " + error)
     }
 }
 
@@ -195,7 +198,7 @@ invCont.buildInventoryEditorView = async function (req, res, next) {
         })
     }
     catch (error) {
-        console.error("buildInventoryEditorView error" + error)
+        console.error("buildInventoryEditorView " + error)
     }
 }
 
@@ -264,7 +267,7 @@ invCont.buildDeleteConfirmationView = async function (req, res, next) {
         })
     }
     catch (error) {
-        console.error("buildDeleteConfirmationView error" + error)
+        console.error("buildDeleteConfirmationView " + error)
     }
 }
 
@@ -294,6 +297,51 @@ invCont.deleteInventory = async function (req, res) {
             inv_price,
             inv_id,
         })
+    }
+}
+
+/* ***************************
+*  Add New Review View
+*  Assignment 6
+* ************************** */
+invCont.buildAddReviewView = async function (req, res, next) {
+    try {
+        const inv_id = parseInt(req.params.inv_id)
+        const vehicleData = await invModel.getInventoryByInvId(inv_id)
+        const vehicleName = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
+        let nav = await utilities.getNav()
+
+        res.render("./inventory/add-review", {
+            title: "Add New Review",
+            nav,
+            errors: null,
+            vehicleName: vehicleName,
+            inv_id: inv_id,
+        })
+    }
+    catch (error) {
+        console.error("buildAddReviewView " + error)
+    }
+}
+
+/* ***************************
+*  Add New Review
+*  Assignment 6
+* ************************** */
+invCont.addNewReview = async function (req, res) {
+    // const inv_id = parseInt(req.body.inv_id)
+    const { review_title, review_text, review_name, inv_id } = req.body
+
+    const result = await invModel.addReview(review_title, review_text, review_name, inv_id)
+
+    let nav = await utilities.getNav()
+    
+    if (result) {
+        req.flash("notice", `Your review has been successfully added!`)
+        res.redirect(`/`)
+    }
+    else {
+        req.flash("notice", `Your review was not added. Please try again.`)
     }
 }
 
