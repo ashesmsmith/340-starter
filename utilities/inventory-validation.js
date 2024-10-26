@@ -198,11 +198,23 @@ validate.checkUpdateData = async (req, res, next) => {
 * ************************** */
 validate.reviewRules = () => {
     return [
+        body("review_title")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Please provide a title for your review."),
+
         body("review_text")
             .trim()
             .escape()
             .notEmpty()
             .withMessage("Please provide a review."),
+
+            body("review_name")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Please provide a display name for your review."),
     ]
 }
 
@@ -210,7 +222,7 @@ validate.reviewRules = () => {
 *  Check data and return errors or continue to Add Review
 * ************************** */
 validate.checkReviewData = async (req, res, next) => {
-    const { review_text } = req.body;
+    const { review_title, review_text, review_name } = req.body;
 
     let errors = []
     errors = validationResult(req)
@@ -220,7 +232,9 @@ validate.checkReviewData = async (req, res, next) => {
             errors,
             title: "Add New Review",
             nav,
+            review_title,
             review_text,
+            review_name,
         })
         return
     }
