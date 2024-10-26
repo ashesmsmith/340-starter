@@ -30,7 +30,8 @@
     <textarea rows="5" cols="30" name="review_text" id="review_text"></textarea>
 
     <label for="review_name">Display Name:</label>
-    <input type="text" name="review_name" id="review_name" required>
+    <input type="text" name="review_name" id="review_name" required
+        value="<%= locals.accountData.account_firstname %> <%= locals.accountData.account_lastname %>">
 
     <button type="submit">Share Review</button>
 

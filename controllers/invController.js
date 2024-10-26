@@ -27,7 +27,7 @@ invCont.buildByInvId = async function (req, res, next) {
     const inv_id = req.params.inv_id
     const data = await invModel.getInventoryByInvId(inv_id)
     const singleView = await utilities.buildSingleView(data)
-    const reviewSection = await utilities.buildReviewSection(inv_id, req.session.accountData.account_id)
+    const reviewSection = await utilities.buildReviewSection(inv_id)
     let nav = await utilities.getNav()
     const vehicleName = `${data.inv_year} ${data.inv_make} ${data.inv_model}`
 
